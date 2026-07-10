@@ -1,0 +1,346 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Tập hợp tất cả các phần tử cần sử dụng
+    const backTop = document.querySelector("#back-top");
+
+    // Xử lý sự kiện scroll navbar mb
+    function handleNavbarMb() {
+        const navbarMb = document.querySelector(".js__navbarMenuMb");
+        if (!navbarMb) return;
+
+        const container = navbarMb.querySelector(".js__navbarMb");
+        const scrollBtn = navbarMb.querySelector(".js__navbarIcon");
+
+        let scrollAmount = 0;
+        let scrollPosition = 0;
+
+        scrollBtn.addEventListener("click", function () {
+            const scrollDistance = 100;
+            scrollAmount = scrollPosition + scrollDistance;
+            scrollAmount = Math.min(
+                scrollAmount,
+                container.scrollWidth - container.clientWidth
+            );
+            container.scrollTo({
+                left: scrollAmount,
+                behavior: "smooth",
+            });
+            scrollPosition = scrollAmount;
+        });
+    }
+
+    // Xử lý thay đổi ngôn ngữ
+    function handleLanguageSwitch() {
+        const langContainers = document.querySelectorAll(".js__languageContainer");
+        if (!langContainers) return;
+        
+        langContainers.forEach((langContainer) => {
+            var languageDefault = langContainer.querySelector(
+                ".js__languageDefault"
+            );
+            var languageItems =
+                langContainer.querySelectorAll(".js__languageItem");
+
+            languageDefault.onclick = function () {
+                this.classList.toggle("active");
+            };
+
+            languageItems.forEach((languageItem) => {
+                var children = languageDefault.querySelector(
+                    ".js__languageDefaultText"
+                );
+                languageItem.onclick = function () {
+                    children.innerHTML = languageItem.innerHTML;
+                    languageDefault.classList.remove("active");
+                };
+            });
+        });
+    }
+
+    // khởi tạo slider với nhiều item có width auto
+    function initSliderAutoItems() {
+        const autoSlides = document.querySelectorAll(".js__autoSlideContainer");
+        if (autoSlides) {
+            autoSlides.forEach((item) => {
+                var slider = item.querySelector(".js__swiperAuto");
+                var next = item.querySelector(".swiper-button-next");
+                var prev = item.querySelector(".swiper-button-prev");
+                new Swiper(slider, {
+                    slidesPerView: "auto",
+                    spaceBetween: 8,
+                    navigation: {
+                        nextEl: next || null,
+                        prevEl: prev || null,
+                    },
+                });
+            });
+        }
+    }
+
+    // Khởi tạo slider với một item
+    function initSliderOneItems() {
+        const oneSlides = document.querySelectorAll(".js__oneSlidesContainer");
+        if (oneSlides) {
+            oneSlides.forEach((item) => {
+                var slider = item.querySelector(".js__oneSlide");
+                var next = item.querySelector(".swiper-button-next");
+                var prev = item.querySelector(".swiper-button-prev");
+                var pagi = item.querySelector(".swiper-pagination");
+
+                new Swiper(slider, {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    slidesPerGroup: 1,
+                    navigation: {
+                        nextEl: next || null,
+                        prevEl: prev || null,
+                    },
+                    pagination: {
+                        el: pagi,
+                        clickable: true,
+                    },
+                    // autoplay: {
+                    //     delay: 3000,
+                    //     disableOnInteraction: false,
+                    // },
+                });
+            });
+        }
+    }
+
+    // Khởi tạo slider với 1 item secondary
+     function initSliderOneItemsTertiary() {
+        const oneTertiarySlides = document.querySelectorAll(".js__oneTertiarySlidesContainer");
+        if (oneTertiarySlides) {
+            oneTertiarySlides.forEach((item) => {
+                var slider = item.querySelector(".js__oneTertiarySlide");
+                var next = item.querySelector(".swiper-button-next");
+                var prev = item.querySelector(".swiper-button-prev");
+                var pagi = item.querySelector(".swiper-pagination");
+                new Swiper(slider, {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    slidesPerGroup: 1,
+                    navigation: {
+                        nextEl: next || null,
+                        prevEl: prev || null,
+                    },
+                    pagination: {
+                        el: pagi,
+                        type: "progressbar",
+                    },
+                });
+            });
+        }
+    }
+
+    // khởi tạo slider với 5 item
+    function initSliderFiveItems() {
+        const fiveSlides = document.querySelectorAll(".js__fiveSlidesContainer");
+        if (fiveSlides) {
+            fiveSlides.forEach((item) => {
+                var slider = item.querySelector(".js__fiveSlide");
+                var next = item.querySelector(".swiper-button-next");
+                var prev = item.querySelector(".swiper-button-prev");
+                var pagi = item.querySelector(".swiper-pagination");
+                new Swiper(slider, {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    slidesPerGroup: 1,
+                    navigation: {
+                        nextEl: next || null,
+                        prevEl: prev || null,
+                    },
+                    pagination: {
+                        el: pagi || null,
+                        clickable: true,
+                    },
+                    // autoplay: {
+                    //     delay: 3000,
+                    //     disableOnInteraction: false,
+                    // },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 20,
+                        }
+                    },
+                });
+            });
+        }
+    }
+
+     // xử lý sự kiện để show sub menu
+     function handleShowSubMenu() {
+        
+        const subMenu = document.querySelector(".js__clickShowMenuMb");
+        if (!subMenu) return;
+        var closeSubMenu = document.querySelector(".js__closeSubMenu");
+        var overlay = document.querySelector(".js__overlay");
+        var parentBox = subMenu.parentElement;
+
+        subMenu.onclick = function () {
+            this.parentElement.classList.add("active");
+            document.querySelector("body").style.overflow = "hidden";
+        };
+        closeSubMenu.onclick = function () {
+            parentBox.classList.remove("active");
+            document.querySelector("body").style.overflow = "auto";
+        };
+        overlay.onclick = function () {
+            parentBox.classList.remove("active");
+            document.querySelector("body").style.overflow = "auto";
+        };
+    }
+
+    // Xử lý sự kiện để show dropdown submenu
+    function handleShowDropdownSubMenu() {
+        const dropdownSubMenu = document.querySelectorAll(".js__dropDown");
+            if (dropdownSubMenu.length === 0) return;
+            dropdownSubMenu.forEach((item) => {
+                var parent = item.parentElement;
+                var nextEle = parent.parentElement.querySelector(".js__listSubMenu");
+                item.onclick = function () {
+                    parent.classList.toggle("active");
+                    if (nextEle.style.maxHeight) {
+                        nextEle.style.maxHeight = null;
+                    } else {
+                        nextEle.style.maxHeight = nextEle.scrollHeight + "px";
+                    }
+                };
+            });
+    }
+
+    // Xử lý sự kiện show search mb
+    function handleShowSearchMb() {
+        const searchMbs = document.querySelectorAll(".js__searchMb");
+        if (searchMbs.length === 0) return;
+        searchMbs.forEach((searchMb) => {
+            var closeSearchMb =
+                document.querySelector(".js__closeSearchMb");
+            var formSearchMb = document.querySelector(".js__formSearchMb");
+            const focusElement =
+                formSearchMb.querySelector(".js__focusSearchMb");
+            searchMb.onclick = function () {
+                formSearchMb.classList.add("active");
+                focusElement.focus();
+                
+            };
+            closeSearchMb.onclick = function () {
+                formSearchMb.classList.remove("active");
+                focusElement.value = "";
+            };
+        });
+    }
+
+
+     // Xử lý tăng giảm font size
+    function handleChangeFontSize() {
+        const changeSizeButtonContainers = document.querySelectorAll('.js__changeSizeButton');
+
+        if(changeSizeButtonContainers.length === 0) return
+
+        changeSizeButtonContainers.forEach((changeSizeButtonContainer) => {
+            const sizeDefault = changeSizeButtonContainer.querySelector('.js__defaultSize');
+            const sizePlus = changeSizeButtonContainer.querySelector('.js__plusSize');
+    
+            const sizeContent = document.querySelector(".js__changeSizeContent");
+            const paragraphs = sizeContent.querySelectorAll("p");
+            let increaseCount = 0;
+            const maxIncrease = 3;
+    
+            // Lưu kích thước mặc định ban đầu của từng thẻ <p>
+            const defaultFontSizes = Array.from(paragraphs).map((p) =>
+                parseInt(window.getComputedStyle(p).fontSize)
+            );
+    
+            sizePlus.onclick = function () {
+                if (increaseCount < maxIncrease) {
+                    increaseCount++;
+                    paragraphs.forEach((paragraph, index) => {
+                        const newFontSize = defaultFontSizes[index] + increaseCount + "px";
+                        paragraph.style.fontSize = newFontSize;
+                    });
+                }
+            };
+    
+            sizeDefault.onclick = function () {
+                if (increaseCount > 0) {
+                    increaseCount--;
+                    paragraphs.forEach((paragraph, index) => {
+                        const newFontSize = defaultFontSizes[index] + increaseCount + "px";
+                        paragraph.style.fontSize = newFontSize;
+                    });
+                }
+            };
+        });
+    }
+
+
+    // Xử lý thanh header dính
+    function handleStickyHeader() {
+        const stickyHeaderPC = document.querySelector(".js__stickyHeader");
+        if (stickyHeaderPC) {
+            const isSticky = scrollY > 300;
+            stickyHeaderPC.classList.toggle("sticky", isSticky);
+        }
+    }
+
+    // Xử lý sự kiện khi nhấn nút "back to top"
+    function handleBackTop() {
+    
+        if (!backTop) return;
+
+        backTop.onclick = function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        };
+
+    }
+
+    // Xử lý hiển thị nút backTop dựa trên vị trí cuộn trang
+    function handleBackTopVisibility() {
+        if (backTop) {
+            if (
+                document.body.scrollTop > 300 ||
+                document.documentElement.scrollTop > 300
+            ) {
+                backTop.style.opacity = 1;
+                backTop.style.visibility = "visible";
+            } else {
+                backTop.style.opacity = 0;
+                backTop.style.visibility = "hidden";
+            }
+        }
+    }
+
+    // Xử lý sự kiện khi cuộn trang
+    function handleWindowScroll() {
+        handleStickyHeader();
+        handleBackTopVisibility()
+    }
+
+    // Khởi tạo tất cả các chức năng
+    function initApp() {
+        handleShowSubMenu();
+        handleShowDropdownSubMenu();
+        handleShowSearchMb();
+        handleNavbarMb();
+        handleLanguageSwitch();
+        // slide
+        initSliderAutoItems();
+        initSliderOneItems();
+        initSliderOneItemsTertiary();
+        initSliderFiveItems();
+        // end slide
+        handleBackTop();
+        handleChangeFontSize();
+        window.addEventListener('scroll',handleWindowScroll);
+        window.addEventListener('resize',handleWindowScroll);
+    }
+
+    // Bắt đầu khởi tạo ứng dụng
+    initApp();
+});
