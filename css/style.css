@@ -2340,25 +2340,19 @@ p {
   white-space: nowrap;
   flex-wrap: nowrap;
   /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 .navbar-menu-mb .navbar-mb::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-.navbar-menu-mb .navbar-mb {
-  /* Track */
-}
 .navbar-menu-mb .navbar-mb::-webkit-scrollbar-track {
   background: transparent;
 }
-.navbar-menu-mb .navbar-mb {
-  /* Handle */
-}
 .navbar-menu-mb .navbar-mb::-webkit-scrollbar-thumb {
   background: transparent;
-}
-.navbar-menu-mb .navbar-mb {
-  /* Handle on hover */
 }
 .navbar-menu-mb .navbar-mb::-webkit-scrollbar-thumb:hover {
   background: transparent;
@@ -2535,25 +2529,19 @@ p {
   white-space: nowrap;
   overflow: auto;
   /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 .breadcrumb-secondary__list::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-.breadcrumb-secondary__list {
-  /* Track */
-}
 .breadcrumb-secondary__list::-webkit-scrollbar-track {
   background: transparent;
 }
-.breadcrumb-secondary__list {
-  /* Handle */
-}
 .breadcrumb-secondary__list::-webkit-scrollbar-thumb {
   background: transparent;
-}
-.breadcrumb-secondary__list {
-  /* Handle on hover */
 }
 .breadcrumb-secondary__list::-webkit-scrollbar-thumb:hover {
   background: transparent;
@@ -2913,12 +2901,10 @@ p {
 }
 .box-nine tr {
   border-bottom: 1px solid #dddddd;
+  font-size: 13px;
 }
 .box-nine tr:last-child {
   border-bottom: none;
-}
-.box-nine tr {
-  font-size: 13px;
 }
 .box-nine .article-info .index-icon {
   flex-shrink: 0;
@@ -4242,25 +4228,19 @@ p {
     white-space: nowrap;
     overflow: auto;
     /* width */
+    /* Track */
+    /* Handle */
+    /* Handle on hover */
   }
   .detail-tags::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
-  .detail-tags {
-    /* Track */
-  }
   .detail-tags::-webkit-scrollbar-track {
     background: transparent;
   }
-  .detail-tags {
-    /* Handle */
-  }
   .detail-tags::-webkit-scrollbar-thumb {
     background: transparent;
-  }
-  .detail-tags {
-    /* Handle on hover */
   }
   .detail-tags::-webkit-scrollbar-thumb:hover {
     background: transparent;
@@ -4327,8 +4307,8 @@ p {
     margin-bottom: 20px;
   }
   .heading-primary,
-  .heading-secondary,
-  .heading-tertiary {
+.heading-secondary,
+.heading-tertiary {
     font-size: 20px;
   }
   .swiper-button-next, .swiper-button-prev {
